@@ -14,10 +14,8 @@ contract StationRegistry is Ownable {
     uint256 public listingFee; // Fee required to add a station
  
     struct ChargingStation {
-        address owner;
-        string name;
-        string metadata;
-        uint256 proposalId;
+        address owner; 
+        string metadata; 
         uint256 stationId;
         uint256 chargingFee;
     }
@@ -25,10 +23,8 @@ contract StationRegistry is Ownable {
     mapping(uint256 => ChargingStation) public chargingStationsRegistry;
 
     event ChargingStationAdded(
-        address owner,
-        string name,
-        string metadata,
-        uint256 proposalId,
+        address owner, 
+        string metadata, 
         uint256 stationId,
         uint256 chargingFee
     ); 
@@ -41,23 +37,19 @@ contract StationRegistry is Ownable {
         listingFee = _listingFee; 
     }    
 
-    function addChargingStation(address _owner, string memory _name, uint256 _proposalId, string memory _metadata, uint256 _chargingFee) external payable onlyOwner returns (uint256) {
+    function addChargingStation(address _owner, string memory _metadata, uint256 _chargingFee) external payable onlyOwner returns (uint256) {
         // require(msg.value >= listingFee, "Insufficient listing fee");
         _stationIdCounter.increment();
         uint256 _stationId = _stationIdCounter.current();
         chargingStationsRegistry[_stationId] = ChargingStation({
-            owner: _owner,
-            name: _name,
-            metadata: _metadata,
-            proposalId: _proposalId,
+            owner: _owner, 
+            metadata: _metadata, 
             stationId: _stationId,
             chargingFee: _chargingFee
         });
         emit ChargingStationAdded(
-            _owner,
-            _name,
-            _metadata,
-            _proposalId,
+            _owner, 
+            _metadata, 
             _stationId,
             _chargingFee
         );

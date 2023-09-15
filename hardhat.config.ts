@@ -25,10 +25,21 @@ const config: HardhatUserConfig = {
       chainId: 31337,
       allowUnlimitedContractSize: true,
     },
-    polygon_mumbai: {
+    mumbai: {
       chainId: 80001,
-      url: "https://rpc-mumbai.maticvigil.com",
+      allowUnlimitedContractSize: true,
+      gas: 2100000,
+      gasPrice: 8000000000,
+      url: "https://polygon-mumbai-bor.publicnode.com	",
       accounts: [process.env.PRIVATE_KEY || ""],
+    },
+    althea: {
+      url: "https://althea.zone:8545",
+      accounts: [PRIVATE_KEY],
+      chainId: 417834,
+      allowUnlimitedContractSize: true,
+      gas: 2100000,
+      gasPrice: 8000000000,
     },
     // sepolia: {
     //   url: SEPOLIA_RPC_URL,
