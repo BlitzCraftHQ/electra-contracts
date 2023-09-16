@@ -11,10 +11,11 @@ contract ElectraToken is ERC20Votes {
     _mint(address(this), s_maxSupply/2);
   }
 
-  function faucet(address to, uint256 amount) public {
-    super._transfer(address(this), to, amount);
+  function stake(address to, uint256 amount) public {
+    _transfer(address(this), to, amount);
+    delegate(to);
   }
-
+  
   // The functions below are overrides required by Solidity. 
   function _afterTokenTransfer(
     address from,
